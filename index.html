@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://use.fontawesome.com/95ac784305.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Sudoku</title>
+  </head>
+  <body>
+    <section id="login">
+      <h1>Sudoku</h1>
+      <form>
+      <div id="userDiv" class="user-div none">
+        <input id="userName" placeholder="User Name" />
+      </div>
+      <div id="emailDiv" class="email-div">
+        <input id="email" placeholder="Email" />
+      </div>
+      <div id="passwordDiv" class="password-div">
+        <input id="password" type="password" placeholder="Password" />
+      </div>
+      <button id="loginBtn" type="button" class="btn button">Login</button>
+      <p id="changeBtn">Sign Up</p>
+    </section>
+    <section id="welcome">
+      <h1 id="welcomeTitle">Welcome</h1>
+      <h2>Level difficulty</h2>
+      <div class="level-actions">
+        <button id="easyBtn" type="button" class="btn button">Easy</button>
+        <button id="mediumBtn" type="button" class="btn button">Medium</button>
+        <button id="hardBtn" type="button" class="btn button">Hard</button>
+      </div>
+    </section>
+    <section id="game">
+      <div id="game-page" class="game-page">
+        <div id="modal">
+          <div id="backdrop" class="backdrop"></div>
+          <div id="modalOverlay" class="modal">
+            <button type="button" id="close">close</button>
+            <div id="content" class="content">
+              <h1 id="modalTitle"></h1>
+            </div>
+          </div>
+        </div>
+        <div id="timer" class="timer">00:00:00</div>
+
+        <div id="musicBtn" onclick="playMusic()" class="player">
+          <span id="musicSpan" class="start"
+            ><i class="fa fa-pause fa-lg" aria-hidden="true"></i>
+          </span>
+        </div>
+        <audio loop id="audio">
+          <source
+            src="./assets/Fantastic Bamboo Flute - 20 min - HD 1080P Chinese Stress Relief.mp3"
+            type="audio/mpeg"
+          />
+        </audio>
+        <h2>Good Luck!</h2>
+        <div id="gameActions" class="game-actions">
+          <button id="finishBtn" type="button" class="btn button">
+            Finish
+          </button>
+          <button id="againBtn" type="button" class="btn button">Again</button>
+          <button id="solveBtn" type="button" class="btn button">Solve</button>
+          <button id="clueBtn" type="button" class="btn button">
+            Clue <span id="cluesNumber">3</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,491 @@
+html,
+body {
+  text-align: center;
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+}
+
+/* buttons */
+
+.button {
+  background-color: #a52a3e !important;
+  color: #fff !important;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #cc495f !important;
+}
+
+.button:hover > #cluesNumber {
+  background-color: #e76379;
+}
+
+.button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* font */
+
+@font-face {
+  font-family: "japanese";
+  src: url("./assets/NightinTokyo-Bold.ttf");
+}
+
+section {
+  background: url("./assets/pexels-belle-co-402028 (1).jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+}
+
+h1 {
+  font-family: "japanese";
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: rgb(255, 251, 248);
+  text-shadow: 1px 1px 10px rgb(66, 42, 31);
+}
+
+h2 {
+  font-family: "japanese";
+  color: #135c69;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 7px #fff;
+}
+
+/* login */
+
+#login {
+  padding: 11% 0 15%;
+}
+
+#login h1 {
+  letter-spacing: 0.5rem;
+}
+
+.user-div input,
+.password-div input,
+.email-div input {
+  width: 230px;
+  border-radius: 7px;
+  border: none;
+  text-indent: 5px;
+  box-shadow: 0 0 3px rgb(66, 42, 31);
+}
+
+.user-div,
+.password-div,
+.email-div {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.none {
+  display: none;
+}
+
+.error-message {
+  color: #dc3545;
+}
+
+#loginBtn {
+  width: 230px;
+}
+
+#changeBtn {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* level */
+
+#welcome {
+  padding: 12% 0 15%;
+  display: none;
+}
+
+.level-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* game page */
+
+#game {
+  display: none;
+  background: url("./assets/pexels-sam-lim-1586205.jpg") no-repeat center center
+    fixed;
+}
+
+#game h2 {
+  padding-top: 1vh;
+  font-size: 4rem;
+  margin: 0;
+  color: rgb(255, 251, 248);
+  text-shadow: 1px 1px 10px rgb(66, 42, 31);
+  letter-spacing: 0.5rem;
+}
+
+.sudoku-image {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  width: 50.01vw;
+  height: 100vh;
+}
+
+#leftImg {
+  left: 0;
+  animation: moveLeft 3s 2s;
+}
+
+#rightImg {
+  right: 0;
+  animation: moveRight 3s 2s;
+}
+
+.td,
+.input {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  text-align: center;
+  font-size: 2rem !important;
+}
+
+.input {
+  border: none;
+  pointer-events: all !important;
+}
+
+.td,
+.clue {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  background-color: rgb(225, 225, 225);
+  pointer-events: none;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.game-actions {
+  justify-content: center;
+  margin: 5px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 0.25rem;
+}
+.clue {
+  animation: clue-animation 2s;
+}
+
+input {
+  cursor: text !important;
+}
+
+input:disabled {
+  color: black;
+}
+
+.toast {
+  align-items: left !important;
+  padding-left: 5px !important;
+  border-radius: 10px;
+  text-align: left !important;
+}
+
+#cluesNumber {
+  background-color: #cc495f;
+  padding: 0.1rem 0.5rem;
+  border-radius: 100%;
+}
+
+/* modal  */
+
+#modal {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  background-color: #1f1f1f;
+  display: none;
+  position: fixed;
+  top: 3.5rem;
+  left: 33%;
+  width: 27rem !important;
+  height: fit-content;
+  padding: 0.5rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(221, 213, 213, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.modal h1 {
+  padding-top: 2rem;
+}
+
+.content {
+  color: #fff;
+  max-height: 30rem;
+  overflow: auto;
+  padding: 0 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 10px;
+}
+
+.didnt-complete {
+  width: 70%;
+  font-size: 18px;
+  margin: 20px auto;
+}
+
+.continue-btn {
+  background-color: rgb(71, 130, 138) !important;
+}
+
+.continue-btn:hover {
+  background-color: rgb(113, 175, 184) !important;
+}
+
+#close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: transparent !important;
+  color: #b8b8b8;
+  font: inherit;
+  text-indent: 100%;
+  cursor: pointer;
+}
+
+#close:focus {
+  outline: solid 0 transparent;
+  box-shadow: 0 0 0 2px #8ed0f9;
+}
+
+#close:hover {
+  background: rgba(29, 161, 142, 0.1) !important;
+}
+
+#close:before,
+#close:after {
+  position: absolute;
+  top: 15%;
+  left: calc(50% - 0.0625em);
+  width: 0.125em;
+  height: 70%;
+  border-radius: 0.125em;
+  transform: rotate(45deg);
+  background: currentcolor;
+  content: "";
+}
+
+#close:after {
+  transform: rotate(-45deg);
+}
+
+.table-header {
+  background-color: rgb(78, 168, 168);
+  color: #fff;
+}
+
+.table th,
+.table td {
+  border-top: none;
+  border-bottom: 3px solid #272727;
+}
+
+.table {
+  border-radius: 1em !important;
+  border-collapse: collapse !important;
+  overflow: hidden !important;
+}
+.all-games {
+  background-color: #5a5a5a;
+}
+
+.current-game {
+  background-color: #9b9b9b;
+}
+
+/* music player */
+
+.player {
+  color: #fff;
+  background: none;
+  width: 50px;
+  height: 50px;
+  border: solid 5px #fff;
+  border-radius: 100%;
+  position: absolute;
+  box-shadow: 1px 1px 3px #999999;
+  top: 20px;
+  left: 20px;
+}
+
+.player span {
+  position: absolute;
+  top: 17%;
+  left: 30%;
+}
+
+.player .start {
+  transition: 300ms;
+  text-indent: -9999px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-left: 20px solid #fff;
+  border-bottom: 15px solid transparent;
+}
+
+.player:hover {
+  background: #4ccaea;
+  cursor: pointer;
+  opacity: 0.8;
+  border: none;
+  width: 60px;
+  height: 60px;
+  box-shadow: none;
+}
+
+.player:hover span {
+  top: 27%;
+  left: 36%;
+}
+
+/* timer */
+
+.timer {
+  position: absolute;
+  padding: 10px;
+  top: 20px;
+  right: 20px;
+  border: 2px solid #a52a3e;
+  color: #000;
+  font-size: 24px;
+  letter-spacing: 3px;
+}
+
+/* animations */
+
+@keyframes moveRight {
+  to {
+    right: -50%;
+    opacity: 0;
+  }
+}
+
+@keyframes moveLeft {
+  to {
+    left: -50%;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes clue-animation {
+  from {
+    background-color: #df4660;
+  }
+  to {
+    background-color: rgb(225, 225, 225);
+  }
+}
+
+@media (max-width: 768px) {
+  .sudoku-image {
+    display: none;
+  }
+
+  #game {
+    padding-top: 20% !important;
+  }
+
+  section {
+    padding-top: 50% !important;
+  }
+
+  table {
+    margin-bottom: 1rem;
+  }
+
+  .td,
+  .input {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1rem !important;
+  }
+
+  .timer {
+    font-size: 14px !important;
+    top: 10px !important;
+    right: 10px !important;
+  }
+  .player {
+    top: 10px !important;
+    left: 10px !important;
+  }
+  .modal {
+    width: 25rem !important;
+    left: 0;
+    top: 5rem;
+  }
+
+  .table {
+    width: 10px !important;
+  }
+}
