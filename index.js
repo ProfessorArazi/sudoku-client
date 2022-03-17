@@ -1,6 +1,7 @@
-// בחירה רנדומלית לאינפוטים (עמית)
-// בדיקה של התוצאות
-// לאפס את המשחק
+/*
+todo:
+1.login page- switch button
+*/
 
 const serverUrl = "http://localhost:8080";
 
@@ -31,6 +32,12 @@ let filledAllInputs = false; // משתנה שישמור האם השחקן מיל
 window.onload = function () {
   // פונקציה שחותכת את השיר ברגע שמרעננים את האתר
   document.getElementById("audio").currentTime = 13;
+  if (sessionStorage.getItem("user")) {
+    document.getElementById("welcomeTitle").innerHTML = `Welcome ${
+      JSON.parse(sessionStorage.getItem("user")).user.userName
+    }`;
+    document.getElementById("userBtn").remove();
+  }
 };
 
 function playMusic() {
@@ -47,6 +54,11 @@ function playMusic() {
   } else {
     audio.play();
   }
+}
+
+function showLoginPage() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("login").style.display = "block";
 }
 
 function login() {
@@ -77,6 +89,7 @@ function login() {
           }`;
           document.getElementById("login").style.display = "none";
           document.getElementById("welcome").style.display = "block";
+          document.getElementById("userBtn").remove();
         } else {
           console.log(res.data);
         }
@@ -97,6 +110,7 @@ function login() {
           }`;
           document.getElementById("login").style.display = "none";
           document.getElementById("welcome").style.display = "block";
+          document.getElementById("userBtn").remove();
         } else {
           console.log(res.data.error);
         }
@@ -133,6 +147,7 @@ function login() {
 }
 
 function changeLoginPage() {
+  document.getElementById("loginForm").reset();
   let user = document.getElementById("userDiv");
   user.classList.toggle("none");
   let loginBtn = document.getElementById("loginBtn");
@@ -1074,6 +1089,8 @@ function stopTimer() {
   timerInterval = undefined;
   return time; // מחזיר את הזמן לפונקציה של הבדיקה
 }
+
+document.getElementById("userBtn").addEventListener("click", showLoginPage);
 
 document.getElementById("loginBtn").addEventListener("click", login);
 

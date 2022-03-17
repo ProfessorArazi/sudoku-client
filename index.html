@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,28 +17,14 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script src="https://use.fontawesome.com/95ac784305.js"></script>
+    <script src="https://kit.fontawesome.com/3cb53c7a1f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
 
     <title>Sudoku</title>
   </head>
   <body>
-    <section id="login">
-      <h1>Sudoku</h1>
-      <form>
-      <div id="userDiv" class="user-div none">
-        <input id="userName" placeholder="User Name" />
-      </div>
-      <div id="emailDiv" class="email-div">
-        <input id="email" placeholder="Email" />
-      </div>
-      <div id="passwordDiv" class="password-div">
-        <input id="password" type="password" placeholder="Password" />
-      </div>
-      <button id="loginBtn" type="button" class="btn button">Login</button>
-      <p id="changeBtn">Sign Up</p>
-    </section>
     <section id="welcome">
+      <i id="userBtn" class="fas fa-user user"></i>
       <h1 id="welcomeTitle">Welcome</h1>
       <h2>Level difficulty</h2>
       <div class="level-actions">
@@ -46,6 +33,21 @@
         <button id="hardBtn" type="button" class="btn button">Hard</button>
       </div>
     </section>
+    <section id="login">
+      <h1>Sudoku</h1>
+      <form id="loginForm">
+        <div id="userDiv" class="user-div none">
+          <input id="userName" placeholder="User Name" />
+        </div>
+        <div id="emailDiv" class="email-div">
+          <input id="email" placeholder="Email" />
+        </div>
+        <div id="passwordDiv" class="password-div">
+          <input id="password" type="password" placeholder="Password" />
+        </div>
+        <button id="loginBtn" type="button" class="btn button">Login</button>
+        <p id="changeBtn">Sign Up</p>
+      </section>
     <section id="game">
       <div id="game-page" class="game-page">
         <div id="modal">

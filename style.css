@@ -68,6 +68,7 @@ h2 {
 
 #login {
   padding: 11% 0 15%;
+  display: none;
 }
 
 #login h1 {
@@ -112,7 +113,14 @@ h2 {
 
 #welcome {
   padding: 12% 0 15%;
-  display: none;
+}
+
+.user {
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
 }
 
 .level-actions {
