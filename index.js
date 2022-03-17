@@ -1,6 +1,7 @@
 /*
 todo:
 1.login page- switch button
+2.add loading
 */
 
 const serverUrl = "http://localhost:8080";
