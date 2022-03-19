@@ -7,16 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
-
-    <link
-      rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+
     <script src="https://kit.fontawesome.com/3cb53c7a1f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
 
@@ -37,16 +38,19 @@
       <h1>Sudoku</h1>
       <form id="loginForm">
         <div id="userDiv" class="user-div none">
-          <input id="userName" placeholder="User Name" />
+          <input class="form-control" id="userName" placeholder="User Name" />
         </div>
         <div id="emailDiv" class="email-div">
-          <input id="email" placeholder="Email" />
+          <input class="form-control" id="email" placeholder="Email" />
         </div>
         <div id="passwordDiv" class="password-div">
-          <input id="password" type="password" placeholder="Password" />
+          <input class="form-control" id="password" type="password" placeholder="Password" />
         </div>
         <button id="loginBtn" type="button" class="btn button">Login</button>
         <p id="changeBtn">Sign Up</p>
+        <div id="loading" class="loading">
+          Loading&#8230;     
+        </div>
       </section>
     <section id="game">
       <div id="game-page" class="game-page">

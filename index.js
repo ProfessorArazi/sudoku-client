@@ -28,6 +28,20 @@ let playerScores = []; // משתנה שישמור את תוצאות השחקן
 
 let filledAllInputs = false; // משתנה שישמור האם השחקן מילא את כל הריבועים
 
+let userName = document.getElementById("userName");
+
+let email = document.getElementById("email");
+
+let password = document.getElementById("password");
+
+const inputs = [userName, email, password];
+
+let userNameDiv = document.getElementById("userDiv");
+
+let passwordDiv = document.getElementById("passwordDiv");
+
+let errorMessages = document.getElementsByClassName("error-message");
+
 // לוח גיבוי שישומש במקרה שיצירת הלוח נתקעה
 
 window.onload = function () {
@@ -63,24 +77,22 @@ function showLoginPage() {
 }
 
 function login() {
-  let messages = document.getElementsByClassName("error-message");
-
-  while (messages.length > 0) {
+  while (errorMessages.length > 0) {
     // מעיף את הודעות השגיאה ממקודם כל פעם שמנסים להתחבר
-    messages[0].parentNode.removeChild(messages[0]);
+    errorMessages[0].parentNode.removeChild(errorMessages[0]);
   }
 
-  let userNameDiv = document.getElementById("userDiv");
-  let userName = document.getElementById("userName").value;
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
+  let loading = document.getElementById("loading");
+
+  inputs.forEach((input) => input.classList.remove("is-invalid"));
 
   if (!userNameDiv.classList.contains("none")) {
+    loading.style.visibility = "visible";
     axios
       .post(`${serverUrl}/users`, {
-        userName,
-        email,
-        password,
+        userName: userName.value,
+        email: email.value,
+        password: password.value,
       })
       .then((res) => {
         if (res.data.user) {
@@ -92,15 +104,27 @@ function login() {
           document.getElementById("welcome").style.display = "block";
           document.getElementById("userBtn").remove();
         } else {
-          console.log(res.data);
+          Object.keys(res.data).forEach((error) =>
+            error === "emailError"
+              ? email.classList.add("is-invalid")
+              : error === "passwordError"
+              ? password.classList.add("is-invalid")
+              : userName.classList.add("is-invalid")
+          );
         }
+        loading.style.visibility = "hidden";
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        loading.style.visibility = "hidden";
+      });
   } else {
+    loading.style.visibility = "visible";
+
     axios
       .post(`${serverUrl}/users/login`, {
-        email,
-        password,
+        email: email.value,
+        password: password.value,
       })
       .then((res) => {
         if (res.data.user) {
@@ -112,45 +136,28 @@ function login() {
           document.getElementById("login").style.display = "none";
           document.getElementById("welcome").style.display = "block";
           document.getElementById("userBtn").remove();
-        } else {
-          console.log(res.data.error);
         }
+        loading.style.visibility = "hidden";
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const errorMessage = document.createElement("p");
+        errorMessage.innerHTML = "Wrong credentials";
+        errorMessage.classList.add("error-message");
+        passwordDiv.appendChild(errorMessage);
+        loading.style.visibility = "hidden";
+      });
   }
-
-  // if (user == "abcd" && password == 1234) {
-  //   // אם הפרטים נכונים אני מעביר לעמוד בחירת הרמה
-  // } else {
-  //   // אם אחד מהפרטים לא נכונים אני קורא לדיבים של האינפוטים
-  //   // ודוחף לכל אחד מהם הודעת שגיאה אם יש שגיאה
-
-  //   let userDiv = document.getElementById("userDiv");
-  //   let passwordDiv = document.getElementById("passwordDiv");
-
-  //   if (user != "abcd") {
-  //     // אם השם משתמש לא נכון מוסיפים הודעת שגיאה מתחת לאינפוט
-
-  //     let userNameErrorMessage = document.createElement("p");
-  //     userNameErrorMessage.classList.add("error-message");
-  //     userNameErrorMessage.innerHTML = "User name does not exist";
-  //     userDiv.appendChild(userNameErrorMessage);
-  //   }
-  //   if (password != 1234) {
-  //     // אם הסיסמה לא נכונה מוסיפים הודעת שגיאה מתחת לאינפוט
-
-  //     let passwordErrorMessage = document.createElement("p");
-  //     passwordErrorMessage.classList.add("error-message");
-  //     passwordErrorMessage.innerHTML = "Wrong password";
-  //     passwordDiv.appendChild(passwordErrorMessage);
-  //   }
-  // }
 }
 
 function changeLoginPage() {
+  while (errorMessages.length > 0) {
+    // מעיף את הודעות השגיאה ממקודם כל פעם שמנסים להתחבר
+    errorMessages[0].parentNode.removeChild(errorMessages[0]);
+  }
+
+  inputs.forEach((input) => input.classList.remove("is-invalid"));
   document.getElementById("loginForm").reset();
-  let user = document.getElementById("userDiv");
-  user.classList.toggle("none");
+  userNameDiv.classList.toggle("none");
   let loginBtn = document.getElementById("loginBtn");
   let changeBtn = document.getElementById("changeBtn");
   [loginBtn.innerHTML, changeBtn.innerHTML] = [
@@ -687,7 +694,7 @@ function finish() {
                 .userName,
             },
           })
-          .then((res) =>
+          .then((res) => {
             showModal(
               res.data,
               mistakes > 0 ? false : true,
@@ -695,8 +702,8 @@ function finish() {
               score,
               time.join(""),
               clueCounter
-            )
-          )
+            );
+          })
           .catch((err) => console.log(err));
       } else {
         showModal(
@@ -944,6 +951,11 @@ function closeModal(finishGame = true) {
 
 function setContentOfModal(scoreBoard, win, mistakes, score, time, clues) {
   // פונקציה שתכניס תוכן למודל
+  let userId;
+
+  if (JSON.parse(sessionStorage.getItem("user"))) {
+    userId = JSON.parse(sessionStorage.getItem("user")).user.id;
+  }
 
   let content = document.getElementById("content");
   while (content.childElementCount > 0) {
@@ -989,7 +1001,7 @@ function setContentOfModal(scoreBoard, win, mistakes, score, time, clues) {
         // עובר על מערך תוצאות המשחקים
 
         let row = table.insertRow();
-        if (scoreBoard[i].userGame) {
+        if (scoreBoard[i].score.userId === userId) {
           // אם אנחנו נמצאים על המשחק הנוכחי אנחנו מסמנים אותו
 
           row.classList.add("current-game");
@@ -1004,11 +1016,11 @@ function setContentOfModal(scoreBoard, win, mistakes, score, time, clues) {
         let cell4 = row.insertCell();
         let cell5 = row.insertCell();
 
-        cell1.innerHTML = scoreBoard[i].userName;
-        cell2.innerHTML = scoreBoard[i].time;
-        cell3.innerHTML = scoreBoard[i].clues;
-        cell4.innerHTML = scoreBoard[i].mistakes;
-        cell5.innerHTML = scoreBoard[i].score;
+        cell1.innerHTML = scoreBoard[i].score.userName;
+        cell2.innerHTML = scoreBoard[i].score.time;
+        cell3.innerHTML = scoreBoard[i].score.clues;
+        cell4.innerHTML = scoreBoard[i].score.mistakes;
+        cell5.innerHTML = scoreBoard[i].score.score;
       }
       content.appendChild(table);
     } else {
