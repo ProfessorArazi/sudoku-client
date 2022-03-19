@@ -4,7 +4,7 @@ todo:
 2.add loading
 */
 
-const serverUrl = "http://localhost:8080";
+const serverUrl = "https://arazi-sudoku-server.herokuapp.com";
 
 let playerEmptyInputs = []; // מערך שבו יהיה לוח המשחק כולל האינפוטים
 
