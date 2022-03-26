@@ -6,6 +6,18 @@ todo:
 
 const serverUrl = "https://arazi-sudoku-server.herokuapp.com";
 
+window.onload = function () {
+  // פונקציה שחותכת את השיר ברגע שמרעננים את האתר
+  if (sessionStorage.getItem("user")) {
+    document.getElementById("welcomeTitle").innerHTML = `Welcome ${
+      JSON.parse(sessionStorage.getItem("user")).user.userName
+    }`;
+    document.getElementById("userBtn").remove();
+  }
+  axios(serverUrl).then((res) => console.log(res.data));
+  document.getElementById("audio").currentTime = 13;
+};
+
 let playerEmptyInputs = []; // מערך שבו יהיה לוח המשחק כולל האינפוטים
 
 let solvedBoard = []; // מערך שבו יהיה הלוח הפתור
@@ -43,17 +55,6 @@ let passwordDiv = document.getElementById("passwordDiv");
 let errorMessages = document.getElementsByClassName("error-message");
 
 // לוח גיבוי שישומש במקרה שיצירת הלוח נתקעה
-
-window.onload = function () {
-  // פונקציה שחותכת את השיר ברגע שמרעננים את האתר
-  document.getElementById("audio").currentTime = 13;
-  if (sessionStorage.getItem("user")) {
-    document.getElementById("welcomeTitle").innerHTML = `Welcome ${
-      JSON.parse(sessionStorage.getItem("user")).user.userName
-    }`;
-    document.getElementById("userBtn").remove();
-  }
-};
 
 function playMusic() {
   // עובד על הפעלת ועצירת המוזיקה ועל האייקון של המוזיקה
