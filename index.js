@@ -14,7 +14,6 @@ window.onload = function () {
     }`;
     document.getElementById("userBtn").remove();
   }
-  axios(serverUrl).then((res) => console.log(res.data));
   document.getElementById("audio").currentTime = 13;
 };
 
