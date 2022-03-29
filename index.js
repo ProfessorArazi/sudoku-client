@@ -383,16 +383,15 @@ function createTable(sudoku, level) {
 
         let input = document.createElement("input");
         // attributes לכל אינפוט אני שומר את השורה והטור בתור
-
+        input.setAttribute("type", "number");
         input.setAttribute("row", i);
         input.setAttribute("col", j);
 
         input.classList.add("input");
 
-        input.addEventListener("keypress", (event) => {
+        input.addEventListener("input", (event) => {
           // בודק בכל הקשה על המקלדת האם התו נמצא בין 1-9
-
-          let value = event.key;
+          let value = event.data;
 
           if ("123456789".indexOf(value) == -1) {
             // אם התו לא נמצא בין 1-9 אני מונע מהאינפוט להכניס את התו
@@ -400,7 +399,7 @@ function createTable(sudoku, level) {
             event.preventDefault();
           } else {
             // אם התו נמצא בין 1-9 אני מכניס רק את הספרה האחרונה שהוכנסה
-            input.value = value.slice(1);
+            input.value = value;
           }
         });
 
