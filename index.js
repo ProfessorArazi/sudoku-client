@@ -76,6 +76,11 @@ function showLoginPage() {
   document.getElementById("login").style.display = "block";
 }
 
+function showHomePage() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("welcome").style.display = "block";
+}
+
 function login() {
   while (errorMessages.length > 0) {
     // מעיף את הודעות השגיאה ממקודם כל פעם שמנסים להתחבר
@@ -1101,6 +1106,8 @@ function stopTimer() {
 }
 
 document.getElementById("userBtn").addEventListener("click", showLoginPage);
+
+document.getElementById("homePageBtn").addEventListener("click", showHomePage);
 
 document.getElementById("loginBtn").addEventListener("click", login);
 
