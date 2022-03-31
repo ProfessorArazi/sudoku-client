@@ -384,7 +384,6 @@ function createTable(sudoku, level) {
         let input = document.createElement("input");
         // attributes לכל אינפוט אני שומר את השורה והטור בתור
         input.setAttribute("type", "number");
-        input.setAttribute("min", "1");
         input.setAttribute("row", i);
         input.setAttribute("col", j);
 
