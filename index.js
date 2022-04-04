@@ -4,7 +4,7 @@ todo:
 2.add loading
 */
 
-const serverUrl = "https://arazi-sudoku-server.herokuapp.com/";
+const serverUrl = "https://arazi-sudoku-server.herokuapp.com";
 
 window.onload = function () {
   // פונקציה שחותכת את השיר ברגע שמרעננים את האתר
