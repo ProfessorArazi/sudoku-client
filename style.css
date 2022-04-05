@@ -76,12 +76,8 @@ h2 {
 
 /* login */
 
-#homePageBtn {
-  margin-bottom: 4%;
-}
-
 #login {
-  padding: 4% 0 15%;
+  padding: 9% 0 15%;
   display: none;
 }
 
