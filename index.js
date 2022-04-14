@@ -155,6 +155,10 @@ function login() {
 }
 
 function changeLoginPage() {
+  const passwordDesc = document.getElementById("passDesc");
+  if (passwordDesc) {
+    passwordDesc.parentNode.removeChild(passwordDesc);
+  }
   while (errorMessages.length > 0) {
     // מעיף את הודעות השגיאה ממקודם כל פעם שמנסים להתחבר
     errorMessages[0].parentNode.removeChild(errorMessages[0]);
@@ -169,6 +173,12 @@ function changeLoginPage() {
     changeBtn.innerHTML,
     loginBtn.innerHTML,
   ];
+  if (loginBtn.innerHTML === "Sign Up") {
+    const passDesc = document.createElement("p");
+    passDesc.innerHTML = "At least 1 capital letter, 8 charecters and 1 symbol";
+    passDesc.setAttribute("id", "passDesc");
+    document.getElementById("passwordDiv").appendChild(passDesc);
+  }
 }
 
 function makeArrayFromMyCube(mat, row, col) {
