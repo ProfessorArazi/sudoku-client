@@ -175,7 +175,7 @@ function changeLoginPage() {
   ];
   if (loginBtn.innerHTML === "Sign Up") {
     const passDesc = document.createElement("p");
-    passDesc.innerHTML = "At least 1 capital letter, 8 charecters and 1 symbol";
+    passDesc.innerHTML = "At least 8 charecters";
     passDesc.setAttribute("id", "passDesc");
     document.getElementById("passwordDiv").appendChild(passDesc);
   }

@@ -130,7 +130,6 @@ h2 {
   color: #fff;
 }
 
-/* Absolute Center Spinner */
 .loading {
   position: fixed;
   z-index: 999;
@@ -145,7 +144,6 @@ h2 {
   visibility: hidden;
 }
 
-/* Transparent Overlay */
 .loading:before {
   content: "";
   display: block;
@@ -157,9 +155,7 @@ h2 {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* :not(:required) hides these rules from IE9 and below */
 .loading:not(:required) {
-  /* hide "loading..." text */
   font: 0/0 a;
   color: transparent;
   text-shadow: none;
