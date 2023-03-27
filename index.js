@@ -29,7 +29,7 @@ let clueCounter = 0; // סופר את מספר הרמזים שנלקחו
 
 let timerInterval; // המשתנה הזה יוגדר לשנייה והוא ישומש לשינוי השעון כל שנייה
 
-let firstGame = 4000;
+let firstGame = true;
 // אם אני במשחק הראשון אני אוסיף דיליי של ארבע שניות
 // עד שהאנימציה תסתיים ואז אתחיל את הטיימר
 
@@ -55,13 +55,23 @@ let errorMessages = document.getElementsByClassName("error-message");
 
 // לוח גיבוי שישומש במקרה שיצירת הלוח נתקעה
 
-function playMusic() {
+function playMusic(stop, firstGame, startGame) {
   // עובד על הפעלת ועצירת המוזיקה ועל האייקון של המוזיקה
 
   let audio = document.getElementById("audio");
 
+  if (firstGame) {
+    return audio.play();
+  }
+  if (stop) return audio.pause();
+
   let musicSpan = document.getElementById("musicSpan");
 
+  if (startGame) {
+    if (musicSpan.classList.contains("start")) audio.pause();
+    else audio.play();
+    return;
+  }
   musicSpan.classList.toggle("start"); // מוסיף את סטארט אם אין אותו או מוחק אותו אם יש
   if (musicSpan.classList.contains("start")) {
     // אם לאייקון יש קלאס סטארט אז האייקון של הפעלה מופיע והמוזיקה צריכה לעצור
@@ -609,9 +619,10 @@ function showSudoku(level) {
   document.getElementById("game").style.display = "block";
 
   // רק אם אני במשחק הראשון אני מפעיל את המוזיקה, אם לא היא תופעל על ידי הכפתור
-  if (firstGame > 0) {
-    playMusic();
-  }
+  if (firstGame) {
+    playMusic(false, true);
+    firstGame = false;
+  } else playMusic(false, false, true);
 
   // יוצר את הטיימר, במשחק הראשון יהיה דיליי בגלל האנימציה
   // בודק אם הרוחב של המסך קטן שווה ל768 מפני שאם אנחנו במסך של טלפון
@@ -1058,7 +1069,10 @@ function setContentOfModal(scoreBoard, win, mistakes, score, time, clues) {
     continuePlayingButton.innerHTML = "Continue";
     stopPlayingButton.innerHTML = "New Game";
     continuePlayingButton.addEventListener("click", () => closeModal(false));
-    stopPlayingButton.addEventListener("click", () => closeModal());
+    stopPlayingButton.addEventListener("click", () => {
+      playMusic(true);
+      closeModal();
+    });
     let modalActions = document.createElement("div");
     modalActions.classList.add("modal-actions");
     modalActions.appendChild(continuePlayingButton);
