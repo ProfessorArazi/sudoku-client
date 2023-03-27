@@ -641,4 +641,10 @@ input:disabled {
   .table {
     width: 10px !important;
   }
+  .game-actions {
+    gap: 1rem;
+  }
+  .button {
+    font-size: 12px;
+  }
 }
