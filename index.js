@@ -988,16 +988,20 @@ function setContentOfModal(scoreBoard, win, mistakes, score, time, clues) {
   }
 
   let title = document.createElement("h1");
+  let scoreTitle = document.createElement("h5");
 
   // יהיה פולס והטעויות יהיו אפס במקרה שהשחקן לא מילא את כל האינפוטים winיכול להיות ש
   // במקרה כזה אנחנו נראה הודעת אזהרה
 
   if (win == false && mistakes > 0) {
-    title.innerHTML = "You Lose";
+    title.innerHTML = `You Lose`;
+    scoreTitle.innerHTML = `Score: ${score}`;
   } else if (win == true) {
-    title.innerHTML = "You Win";
+    title.innerHTML = `You Win`;
+    scoreTitle.innerHTML = `Score: ${score}`;
   }
   content.appendChild(title);
+  content.appendChild(scoreTitle);
 
   if ((mistakes > 0 && win == false) || win == true) {
     // יוצרים את טבלת הניקוד
