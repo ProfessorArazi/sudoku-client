@@ -1,9 +1,3 @@
-/*
-todo:
-1.login page- switch button
-2.add loading
-*/
-
 const serverUrl = "https://sudoku-server-sooty.vercel.app";
 
 window.onload = function () {
@@ -705,6 +699,10 @@ function finish() {
       let score = finalScore(seconds, mistakes);
 
       if (sessionStorage.getItem("user")) {
+        let loading = document.getElementById("loadingResults");
+
+        loading.style.visibility = "visible";
+
         axios
           .post(`${serverUrl}/users/finish`, {
             userScore: {
@@ -718,6 +716,7 @@ function finish() {
             },
           })
           .then((res) => {
+            loading.style.visibility = "hidden";
             showModal(
               res.data,
               mistakes > 0 ? false : true,
@@ -727,7 +726,10 @@ function finish() {
               clueCounter
             );
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            loading.style.visibility = "hidden";
+          });
       } else {
         showModal(
           [],
@@ -1050,10 +1052,6 @@ function setContentOfModal(scoreBoard, win, mistakes, score, time, clues) {
         cell5.innerHTML = scoreBoard[i].score.score;
       }
       content.appendChild(table);
-    } else {
-      let stats = document.createElement("p");
-      stats.innerHTML = `score : ${score}`;
-      content.appendChild(stats);
     }
   } else {
     // אם המשתמש לא מילא הכל אנחנו יוצרים הודעת אזהרה עם כפתורים המאפשרים
