@@ -605,6 +605,10 @@ input:disabled {
     display: none;
   }
 
+  #content h1 {
+    font-size: 4rem;
+  }
+
   .modal {
     width: 100% !important;
   }
@@ -640,6 +644,7 @@ input:disabled {
 
   .table {
     width: 10px !important;
+    font-size: 13px;
   }
   .game-actions {
     gap: 1rem;
